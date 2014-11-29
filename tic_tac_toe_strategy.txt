@@ -1,0 +1,97 @@
+
+Introduction : 
+----------------
+A game of Tic Tac Toe has a board with 3x3 grid. Its a two player game where each player can choose between 'X' or '0' as his/her symbol.
+Each player then marks his symbol symbol in one of the grids available in turns. 
+The game is over when a player wins by having his symbol in all the 3 grids horizontally, vertically or diagonally.
+
+About the Game : 
+---------------- 
+The Game provides a Command Line Interface. 
+Game can be started by executing the following command at the prompt: 
+	$> python gmalu-hw1.py
+
+At the end of the Game, it also prompts the User if he/she wishes to Start a New Game.
+	
+Strategy :
+---------------- 
+For the ease of explaining, lets mark the 9 grids as shown below  
+	7|8|9
+	4|5|6
+	1|2|3
+		
+The AI program gmalu-hw1.py follows the below strategy in the preference shown below : 
+
+ 1. Try to Win : 
+		Check if the Computer has 2 of its symbols in any single line or diagonal. 
+		If yes, place the third and finish the Game!
+		
+		In the below example, its Computer's turn (X) next and it will place its symbol in Grid 9 and Win the Game.
+		X |   |  					X |   | X
+		O | O | X 		--->		O | O | X
+		  | O | X					  | O | X
+
+		
+ 2. Try to Not Lose :
+		Check if the User has 2 symbols in any of the horizontal, vertical or diagonal lines. 
+		If yes, block the User from winning the Game!
+
+		In the below example, its Computer's turn (O) next and it will place its symbol in Grid 9 to block User's winning move and save the Game.		
+		 O |   |  					O |   | O
+		   | X |  		--->		  | X |   
+		 X |   | O					X |   | O
+		
+		
+
+3. 	Avoid Double Threats : 
+		If the User has his symbols in the opposite corners, try to avoid a probable Double Threat by placing in one of the side grids.	
+
+		In the below example, its Computer's turn (X) next and it will place its symbol in Grid 6 to avoid a possible double threat from the user.
+		The User will then be pushed to defend himself from losing by playing in Grid 4.
+		
+		 O |   |  					O |   | 
+		   | X |  		--->		  | X | X  
+		   |   | O					  |   | O
+		
+
+4.	Capture Middle Grid : 
+		Irrespective of who starts the game first, if the Middle Grid is available, capture it.
+
+		In the below example, Computer playing second (O) grabs the Grid 5. 
+		
+		   |   |  					  |   | 
+		   |   |  		--->		  | O |   
+		   |   | X					  |   | X
+
+		
+5.	Grab Opposite Corner : 
+		If the User has played a corner, Grab the Opposite Corner if available
+	
+		In the below example, after Computer starting the game with Grid 5, User (O) has played in Grid 3. 
+		Its Computer's turn (X) next and it will place its symbol in Grid 7 to avoid future attacks from User.
+		
+		   |   |  					X |   | 
+		   | X |  		--->		  | X |   
+		   |   | O					  |   | O
+			
+	
+6.	Grab the Corner Grid :
+		If none of the above rules apply, grab a corner grid if available.
+		
+		In the below example, User (X) has started the game with Grid 5. 
+		Its Computer's turn (X) next and it will place its symbol in any of the corner grids if available.
+		
+		   |   |  					  |   | 
+		   | X |  		--->		  | X |   
+		   |   | 					O |   |  
+		
+7.	Grab the side grid if available 
+		If none of the above rules apply, grab a Side Grid if available.
+
+		In the below example, its Computer's turn (X) next. As none of the above rules apply, it will place its symbol in any of the side grids if available.
+		
+		 O | X | O					O | X | O
+		   | O |  		--->		  | O | X 
+		 X | O | X					X | O | X  
+		
+		
